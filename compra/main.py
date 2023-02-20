@@ -243,16 +243,12 @@ def compra_membresia():
 def compra_membresia_cancelar():
     errors = {}
     if request.method == "POST":
-        # Body request
-        required_fields = ('user_id')
         # Body request check
-        for field_name in required_fields:
-            if field_name not in request.json:
-                errors = {
-                    "error": f'{field_name} faltante.',
-                    "desc": f'El campo {field_name} es obligatorio.'
-                }
-                break
+        if 'user_id' not in request.json:
+            errors = {
+                "error": 'user_id faltante.',
+                "desc": 'El campo user_id es obligatorio.'
+            }
         if len(errors) > 0:
             return jsonify(errors), 400
         ##########################################################################
