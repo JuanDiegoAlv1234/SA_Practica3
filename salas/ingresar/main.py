@@ -3,37 +3,6 @@ import re
 
 app = Flask(__name__)
 
-
-# * Servicio de salas de cine
-@app.route("/salas", methods=["GET"])
-def ver_salas():
-
-    # Arreglo de salas de cine
-    salas = [
-        {
-            "id_sala": 1,
-            "capacidad": 50
-        },
-        {
-            "id_sala": 1,
-            "capacidad": 50
-        }
-    ]
-
-    parametro = int(request.args.get('id_sucursal'))
-    req_mesg = "El listado de salas de la sucursal {} fue obtenida con exito".format(
-        parametro)
-
-    # Validación de codigo de sucursal
-
-    return jsonify({
-        "type": "success",
-        "msg": req_mesg,
-        "id_sucursal": parametro,
-        "salas": salas
-    })
-
-
 # * Servicio para crear nuevas salas
 @app.route("/salas/ingresar", methods=["POST"])
 def ingresar_sala():
